@@ -9,17 +9,23 @@ import { AppRoutingModule } from 'app/app-routing.module';
 import { AppComponent } from 'app/app.component';
 import { BaseModule } from 'app/base/base.module';
 import { SharedModule } from 'app/shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    CommonModule,
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     ProductModule,
     BrowserAnimationsModule,
     SharedModule,
     BaseModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'en' }
