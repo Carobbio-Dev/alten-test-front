@@ -11,8 +11,6 @@ const TRANSPARENT_NAV_PAGES = [ 'login' ];
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  isAvailable = false;
-
   @HostBinding('class.transparent') transparent = false;
 
   constructor(

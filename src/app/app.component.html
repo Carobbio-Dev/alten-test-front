@@ -2,14 +2,16 @@
 <div class="app-container"
   [class.sidenav-expanded]="getExpanded"
   [class.sidenav-pinned]="getPinned">
-  <app-sidenav></app-sidenav>
   <div class="app-header">
     <app-breadcrumb></app-breadcrumb>
   </div>
-  <div class="my-container">
-    <button *ngIf="isAvailable">BUY</button>
-
-    <router-outlet></router-outlet>
+  <div class="d-flex">
+    <div class="flex-fill">
+      <app-sidenav></app-sidenav>
+    </div>
+    <div class="flex-fill my-container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 
