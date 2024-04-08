@@ -25,7 +25,7 @@ export class ProductsAdminComponent implements OnInit {
   constructor(private productService: ProductsService, private http: HttpClient) { }
 
   ngOnInit() {
-    this.productService.getAllProducts().then(products => {
+    this.productService.getAllProductsFromJSON().then(products => {
       this.products = products;
       this.loading = false;
   });
