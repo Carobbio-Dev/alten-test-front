@@ -21,7 +21,6 @@ export class ProductsAdminComponent implements OnInit {
   statuses: any[];
 
   loading: boolean = true;
-  public editing: boolean = false;
 
   constructor(private productService: ProductsService, private http: HttpClient) { }
 
@@ -46,21 +45,16 @@ export class ProductsAdminComponent implements OnInit {
   }
 
   onRowEditInit(product: Product) {
-    this.editing = true;
     this.clonedProducts[product.id] = {...product};
-    console.log(this.editing)
   }
 
   onRowDelete(index: number) {
-    this.products.splice(index, 1);
   }
 
   onRowEditSave(product: Product) {
-
   }
 
   onRowEditCancel(product: Product, index: number) {
-
   }
 
 }
