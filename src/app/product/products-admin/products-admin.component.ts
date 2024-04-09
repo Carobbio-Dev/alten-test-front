@@ -25,12 +25,24 @@ export class ProductsAdminComponent implements OnInit {
   constructor(private productService: ProductsService, private http: HttpClient) { }
 
   ngOnInit() {
-    this.productService.getAllProductsFromJSON().then(products => {
+    // Case import from JSON
+    /*this.productService.getAllProductsFromJSON().then(products => {
       this.products = products;
       this.loading = false;
-  });
-    
+    });*/
+    // Case import from API
+    this.loadData();
   }
+
+  loadData(){
+    this.productService.getAllProductsFromAPI().subscribe(
+      (products:any) => {
+        this.products = products;
+        this.loading = false;
+      }
+  );
+  }
+
   newClick(){
     console.log("Do something new product"); // TODO
   }
@@ -49,6 +61,7 @@ export class ProductsAdminComponent implements OnInit {
   }
 
   onRowDelete(index: number) {
+    this.products.splice(index, 1);
   }
 
   onRowEditSave(product: Product) {
