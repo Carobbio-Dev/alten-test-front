@@ -3,6 +3,8 @@ import { Table } from 'primeng/table';
 import { ProductsService } from '../products.service';
 import { Product } from '../product';
 import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
+
 
 
 @Component({
@@ -22,7 +24,9 @@ export class ProductsAdminComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private productService: ProductsService, private http: HttpClient) { }
+  constructor(private productService: ProductsService,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit() {
     // Case import from JSON
@@ -45,6 +49,7 @@ export class ProductsAdminComponent implements OnInit {
 
   newClick(){
     console.log("Do something new product"); // TODO
+    this.messageService.add({ severity: 'success', summary: 'Info', detail: 'Message Content' });
   }
 
   deleteClick(table: Table) {
@@ -54,6 +59,7 @@ export class ProductsAdminComponent implements OnInit {
 
   parameterClick(){
     console.log("Do something parameter") // TODO
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Message Content' });
   }
 
   onRowEditInit(product: Product) {
@@ -61,13 +67,29 @@ export class ProductsAdminComponent implements OnInit {
   }
 
   onRowDelete(index: number) {
-    this.products.splice(index, 1);
+    this.products.splice(index, 1); // TODO push this remove to API
+    this.messageService.add({ severity: 'error', summary: 'success', detail: 'Message Content' });
   }
 
-  onRowEditSave(product: Product) {
+  onRowEditSave(product: Product) { // TODO
+    if (product.price > 0) { // ADD check if all cells are editing
+      delete this.clonedProducts[product.id];
+      // TODO call API to push
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+  }
+  else {
+      // TODO toast
+      this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Message Content' });
+
+
+  }
   }
 
-  onRowEditCancel(product: Product, index: number) {
+  onRowEditCancel(product: Product, index: number) { // TODO
+    //this.products[index] = this.clonedProducts[product.id]; // problem data lost
+    delete this.clonedProducts[product.id];
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Row not change' });
+
   }
 
 }
