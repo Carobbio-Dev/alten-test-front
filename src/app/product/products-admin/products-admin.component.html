@@ -1,12 +1,12 @@
-<p-table #dt [value]="products" [(selection)]="selectedProducts" editMode="row" [selectionPageOnly]="true" dataKey="id"
+<p-table #dt [class.expanded]="sidenavService.getExpanded()" [value]="products" [(selection)]="selectedProducts" editMode="row" [selectionPageOnly]="true" dataKey="id"
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
     [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [globalFilterFields]="['product.code','product.name']" styleClass="p-datatable-striped p-datatable-gridlines">
     <ng-template pTemplate="caption">
-        <div class="d-flex mb-3">
+        <div class="flex flex-row">
             <button pButton label="New" class="p-button-success p-2 mr-2" icon="pi pi-plus" (click)="newClick()"></button>
             <button pButton label="Delete" class="p-button-dager p-2" disabled icon="pi pi-trash" (click)="deleteClick(dt)"></button>
-            <button pButton icon="pi pi-cog" class="ms-auto p-2" (click)="parameterClick()"></button>
+            <button pButton icon="pi pi-cog" class="ml-auto p-2" (click)="parameterClick()"></button>
         </div>
     </ng-template>
     <ng-template pTemplate="header">

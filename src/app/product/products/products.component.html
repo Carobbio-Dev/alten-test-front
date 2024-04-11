@@ -1,15 +1,15 @@
-<div class="card">
-    <p-dataView #dv [value]="products" [paginator]="true" [rows]="5" filterBy="name"
+    <div class="card" [class.expanded]="sidenavService.getExpanded()">
+        <p-dataView #dv [value]="products" [paginator]="true" [rows]="9" filterBy="price"
         [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
-        <ng-template pTemplate="header">
-            <div class="flex flex-column md:flex-row md:justify-content-between">
-                <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)"></p-dropdown>
-                <span class="p-input-icon-left">
-                    <i class="pi pi-search"></i>
-                    <input type="search" pInputText placeholder="Search by Name">
-                </span>
-                <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-            </div>
+         <ng-template pTemplate="header">
+          <div class="flex flex-column md:flex-row md:justify-content-between">
+              <p-dropdown [options]="sortOptions" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="mb-2 md:mb-0"></p-dropdown>
+              <span class="p-input-icon-left mb-2 md:mb-0">
+                  <i class="pi pi-search"></i>
+                  <input type="search" pInputText placeholder="Search by Name">
+              </span>
+              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+          </div>
         </ng-template>
         <ng-template let-product pTemplate="listItem">
             <div class="col-12">
@@ -30,7 +30,7 @@
         </ng-template>
         <ng-template let-product pTemplate="gridItem">
             <div class="col-12 md:col-4">
-                <div class="product-grid-item card">
+                <div class="product-grid-item ">
                     <div class="product-grid-item-top">
                         <div>
                             <i class="pi pi-tag product-category-icon"></i>
@@ -51,4 +51,4 @@
             </div>
         </ng-template>
     </p-dataView>
-</div>
+    </div>

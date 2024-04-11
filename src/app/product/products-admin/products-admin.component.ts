@@ -4,6 +4,7 @@ import { ProductsService } from '../products.service';
 import { Product } from '../product';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { SidenavService } from 'app/base/sidenav/sidenav.service';
 
 
 
@@ -25,7 +26,8 @@ export class ProductsAdminComponent implements OnInit {
   loading: boolean = true;
 
   constructor(private productService: ProductsService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    public sidenavService: SidenavService
   ) { }
 
   ngOnInit() {
@@ -49,7 +51,7 @@ export class ProductsAdminComponent implements OnInit {
 
   newClick(){
     console.log("Do something new product"); // TODO
-    this.messageService.add({ severity: 'success', summary: 'Info', detail: 'Message Content' });
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'New product created!' });
   }
 
   deleteClick(table: Table) {
@@ -59,7 +61,7 @@ export class ProductsAdminComponent implements OnInit {
 
   parameterClick(){
     console.log("Do something parameter") // TODO
-    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Message Content' });
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Go to parameter view' });
   }
 
   onRowEditInit(product: Product) {
@@ -68,18 +70,18 @@ export class ProductsAdminComponent implements OnInit {
 
   onRowDelete(index: number) {
     this.products.splice(index, 1); // TODO push this remove to API
-    this.messageService.add({ severity: 'error', summary: 'success', detail: 'Message Content' });
+    this.messageService.add({ severity: 'success', summary: 'success', detail: 'Product deleted!' });
   }
 
   onRowEditSave(product: Product) { // TODO
-    if (product.price > 0) { // ADD check if all cells are editing
+    if (true) { // ADD check if all cells are editing
       delete this.clonedProducts[product.id];
       // TODO call API to push
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Message Content' });
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Product updated!' });
   }
   else {
       // TODO toast
-      this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Message Content' });
+      this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'Product not updated.' });
 
 
   }
@@ -88,7 +90,7 @@ export class ProductsAdminComponent implements OnInit {
   onRowEditCancel(product: Product, index: number) { // TODO
     //this.products[index] = this.clonedProducts[product.id]; // problem data lost
     delete this.clonedProducts[product.id];
-    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Row not change' });
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Product update forgot.' });
 
   }
 

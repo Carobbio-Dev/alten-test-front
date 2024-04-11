@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { SelectItem } from 'primeng/api';
+import { SidenavService } from 'app/base/sidenav/sidenav.service';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,7 @@ export class ProductsComponent implements OnInit {
 
     sortField!: string;
 
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductsService, public sidenavService: SidenavService) {}
 
   ngOnInit() {
     // Case import from JSON
